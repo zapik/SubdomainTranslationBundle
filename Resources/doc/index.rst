@@ -88,7 +88,7 @@ Enable kernel request listener in services
 
     // services.yml
     services:
-        publero_frontend.kernel_request_listener:
+        zapik_subdomain_translation.kernel_request_listener:
             class: Zapik\SubdomainTranslationBundle\KernelRequestListener
             arguments: ["@zapik_subdomain_translation.switcher"]
             tags:
