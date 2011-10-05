@@ -35,7 +35,6 @@ class Configuration implements ConfigurationInterface
          *      allowed_locales:
          *          en: English
          *          cs: Česky
-         *      translation_dir: %kernel.root_dir%/../src/Acme/DemoBundle/Resources/translations // TODO?
          */
         $rootNode
             ->children()
@@ -44,6 +43,9 @@ class Configuration implements ConfigurationInterface
                     ->useAttributeAsKey('key') // convert array into associative array as we wish!
                     ->prototype('variable')
                     ->end()
+                 ->end()
+                 ->booleanNode('validate_locales')
+                 ->defaultValue(true)
                  ->end()
             ->end();
 

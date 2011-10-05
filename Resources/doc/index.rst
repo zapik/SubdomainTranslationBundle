@@ -1,6 +1,8 @@
 SubdomainTranslationBundle
 **************************
 
+(For Symfony 2.0.x)
+
 Provides easy locale/translations switching in dependence on subdomain (3rd level domain name).
 
 Symfony2 can actually not define routes for subdomains, so you can't define pattern for switch
@@ -72,6 +74,7 @@ You should define optional list of available locales in your project configurati
         allowed_locales:
             cs: Česky
             en: English
+        validate_locales: false
 
 Keys (en, cs) are used for subdomain name (en.example.com) and locale names.
 Values (Česky, English) are currently not needed. You can use them i.e. for generating links for switching.
@@ -80,6 +83,10 @@ The first defined locale is **fallback locale**. If user specify invalid subdoma
 redirected to this fallback locale (cs.example.com)
 
 If you don't specify ``allowed_locales``, all possible values from file ``Resources/config/locales.xml`` are used.
+
+If **validate_locales** is enabled (by default), locale codes will be verified against values in locales.xml. 
+If you need some other subdomain names (i.e. *www* with framework default_locale), 
+you have to set ``validate_locales: false``
 
 Enable kernel request listener in services
 ------------------------------------------
@@ -110,8 +117,3 @@ Defined services and parameters
 * zapik_subdomain_translation.manager
 * zapik_subdomain_translation.switcher
 
-Plans ToDo
-===========
-
-* possible make tool for translation administration like in lichess. Symfony2 is now able to get all translation strings by
-  console command, so this feature should not be needed.

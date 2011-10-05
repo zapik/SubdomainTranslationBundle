@@ -41,35 +41,16 @@ class ZapikSubdomainTranslationExtension extends Extension
         if (empty($config['allowed_locales'])) {
             $container->setParameter('zapik_subdomain_translation.locales', $validLocales);
         } else {
-            // validate locales against internal defined
-            $locales = array_keys($config['allowed_locales']);
-            foreach ($locales as $locale) {
-                if (!isset($validLocales[$locale])) {
-                    throw new \InvalidArgumentException(sprintf('Unknown locale "%s".', $locale));
+            if ($config['validate_locales']) {
+                // validate locales against internal defined
+                $locales = array_keys($config['allowed_locales']);
+                foreach ($locales as $locale) {
+                    if (!isset($validLocales[$locale])) {
+                        throw new \InvalidArgumentException(sprintf('Unknown locale "%s".', $locale));
+                    }
                 }
             }
             $container->setParameter('zapik_subdomain_translation.locales', $config['allowed_locales']);
         }
-
-        // set default = fallback locale
-        if (empty($config['fallback_locale'])) {
-            $config['fallback_locale'] = 'en';
-        }
-        if (!isset($validLocales[$config['fallback_locale']])) {
-            throw new \InvalidArgumentException(sprintf('Unknown locale "%s".', $config['fallback_locale']));
-        }
-        $container->setParameter('zapik_subdomain_translation.fallback_locale', $config['fallback_locale']);
-
-        /* not used yet -> for administration ...
-        if (!$container->getParameter('zapik_subdomain_translation.translation_dir')) {
-            if (empty($config['translation_dir'])) {
-                throw new \InvalidArgumentException('translation_dir must be defined either by parameter or config');
-            }
-            $container->setParameter('zapik_subdomain_translation.translation_dir', $config['translation_dir']);
-        }
-        */
-        // TODO if possible, add definitions for more application bundle translation directories ->
-        // etc. AcmeDemoBundle/Resources/translation, AcmeEshopBundle/Resources/Translations
-        // depending on actual executed bundle ...
     }
 }
