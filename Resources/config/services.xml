@@ -16,5 +16,10 @@
         <service id="zapik_subdomain_translation.switcher" class="Zapik\SubdomainTranslationBundle\Switcher">
             <argument type="service" id="zapik_subdomain_translation.manager" />
         </service>
+        
+        <service id="zapik_subdomain_translation.kernel_request_listener" class="Zapik\SubdomainTranslationBundle\KernelRequestListener">
+            <argument type="service" id="zapik_subdomain_translation.switcher" />
+            <tag name="kernel.event_listener" event="kernel.request" method="onDomainParse" priority="0" />
+        </service>        
     </services>
 </container>

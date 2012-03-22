@@ -88,22 +88,6 @@ If **validate_locales** is enabled (by default), locale codes will be verified a
 If you need some other subdomain names (i.e. *www* with framework default_locale), 
 you have to set ``validate_locales: false``
 
-Enable kernel request listener in services
-------------------------------------------
-
-::
-
-    // services.yml
-    services:
-        zapik_subdomain_translation.kernel_request_listener:
-            class: Zapik\SubdomainTranslationBundle\KernelRequestListener
-            arguments: ["@zapik_subdomain_translation.switcher"]
-            tags:
-               - { name: kernel.event_listener, event: kernel.request, method: onDomainParse, priority: 0 }
-
-
-
-
 Defined services and parameters
 ================================
 
