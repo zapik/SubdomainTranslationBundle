@@ -1,0 +1,20 @@
+{
+    "name": "zapik/subdomain-translation-bundle",
+    "type": "symfony-bundle",
+    "description": "Easy Symfony2 locale on subdomains.",
+    "keywords": ["subdomain", "locale"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Alois Kuzela"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.2",
+        "symfony/framework-bundle": ">=2.1"
+    },
+    "autoload": {
+        "psr-0": { "Zapik\\SubdomainTranslationBundle": "" }
+    },
+    "target-dir": "Zapik/SubdomainTranslationBundle"
+}
