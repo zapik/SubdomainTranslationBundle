@@ -41,7 +41,7 @@ class Switcher
         $parts = explode('.', $request->getHost());
         if (count($parts) === 3) {
             $locale = $parts[0];
-            if ($locale == $$request->getLocale()) {
+            if ($locale == $request->getLocale()) {
                 return;
             }
             if ($this->manager->isAvailable($locale)) {
