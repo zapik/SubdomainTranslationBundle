@@ -41,11 +41,11 @@ class Switcher
         $parts = explode('.', $request->getHost());
         if (count($parts) === 3) {
             $locale = $parts[0];
-            if ($locale == $session->getLocale()) {
+            if ($locale == $request->getLocale()) {
                 return;
             }
             if ($this->manager->isAvailable($locale)) {
-                $session->setLocale($locale);
+                $$request->setLocale($locale);
                 $preferred = $request->getPreferredLanguage($this->manager->getAvailableLanguageCodes());
                 if ($preferred != $locale) {
                     $session->setFlash('locale_change_adjust', $preferred);
